@@ -1,6 +1,6 @@
 class Auth {
   constructor() {
-    this.baseUrl = 'http://api.annamolly888.students.nomoredomainsmonster.ru';
+    this.baseUrl = 'https://api.annamolly888.students.nomoredomainsmonster.ru';
   }
 
   _checkResponse(res) {
