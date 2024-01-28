@@ -1,7 +1,6 @@
 class Api {
-  constructor(config) {
-    this.baseUrl = config.baseUrl;
-    this.headers = config.headers;
+  constructor() {
+    this.baseUrl = 'https://api.annamolly888.students.nomoredomainsmonster.ru';
   }
 
   _checkResponse(res) {
