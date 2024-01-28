@@ -79,13 +79,6 @@ class Api {
   }
 }
 
-const api = new Api({
-  baseUrl: "https://api.annamolly888.students.nomoredomainsmonster.ru",
-  headers: {
-    authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    "Content-Type": "application/json",
-  },
-  credentials: "include",
-});
+const api = new Api();
 
 export default api;
