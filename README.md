@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.131.241
+IP 158.160.131.241
 
-Frontend https://annamolly888.students.nomoredomainsmonster.ru/
+Frontend http://annamolly888.students.nomoredomainsmonster.ru/
 
-Backend https://api.annamolly888.students.nomoredomainsmonster.ru/
+Backend http://api.annamolly888.students.nomoredomainsmonster.ru/
