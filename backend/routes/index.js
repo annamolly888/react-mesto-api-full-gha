@@ -13,7 +13,7 @@ router.use('/users', require('./users'));
 router.use('/cards', require('./cards'));
 
 router.use('/*', (req, res, next) => {
-  next(new NotFound('Такой ссылки не существует'));
+  next(new NotFound('Такой ссылки не существует.'));
 });
 
 module.exports = router;
