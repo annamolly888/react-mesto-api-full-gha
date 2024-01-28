@@ -2,7 +2,8 @@
 const allowedCors = [
   'https://annamolly888.students.nomoredomainsmonster.ru/',
   'http://annamolly888.students.nomoredomainsmonster.ru/',
-  'localhost:3000',
+  'http://localhost:3000',
+  'https://localhost:3000',
 ];
 
 // eslint-disable-next-line consistent-return
