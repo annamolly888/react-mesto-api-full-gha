@@ -1,7 +1,6 @@
 class Auth {
-  constructor(config) {
-    this.baseUrl = config.baseUrl;
-    this.headers = config.headers;
+  constructor() {
+    this.baseUrl = 'http://api.annamolly888.students.nomoredomainsmonster.ru';
   }
 
   _checkResponse(res) {
@@ -16,7 +15,10 @@ class Auth {
   register(email, password) {
     return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
-      headers: this.headers,
+      headers: {
+        "Accept": "application/json",
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ email, password }),
     }).then(this._checkResponse);
   }
@@ -25,7 +27,10 @@ class Auth {
   authorize(email, password) {
     return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
-      headers: this.headers,
+      headers: {
+        "Accept": "application/json",
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ email, password }),
     }).then(this._checkResponse);
   }
@@ -35,18 +40,14 @@ class Auth {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Accept": "application/json",
+        'Content-Type': 'application/json',
+        "Authorization" : `Bearer ${token}`
       },
     }).then(this._checkResponse);
   }
 }
 
-const auth = new Auth({
-  baseUrl: "https://auth.nomoreparties.co",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const auth = new Auth();
 
 export default auth;

@@ -81,11 +81,12 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-77",
+  baseUrl: "https://api.annamolly888.students.nomoredomainsmonster.ru",
   headers: {
-    authorization: "800f28e7-a250-4ab8-bfd6-41ba14cda4a3",
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
   },
+  credentials: "include",
 });
 
 export default api;

@@ -172,7 +172,7 @@ function App() {
           setUserEmail(`${email}`);
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
-          navigate("/react-mesto-auth", { replace: true });
+          navigate("/", { replace: true });
         }
       })
       .catch((err) => {
@@ -192,7 +192,7 @@ function App() {
           if (res) {
             setUserEmail(`${res.data.email}`);
             setLoggedIn(true);
-            navigate("/react-mesto-auth", { replace: true });
+            navigate("/", { replace: true });
           }
         })
         .catch((err) => {

@@ -8,6 +8,7 @@ const {
   DUBLICATE_KEY,
   STATUS_CREATED,
 } = require('../utils/statuses');
+const { SECRET_KEY } = require('../utils/utils');
 const NotFound = require('../errors/NotFound');
 const BadRequest = require('../errors/BadRequest');
 const Conflict = require('../errors/Conflict');
@@ -90,12 +91,8 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
-      return res.cookie('jwt', token, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-        sameSite: true,
-      }).send({ token });
+      const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
+      return res.send({ token });
     })
     .catch((err) => {
       sendError(err, res, next);
