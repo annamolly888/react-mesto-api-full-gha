@@ -48,14 +48,13 @@ const deleteCard = (req, res, next) => {
     .orFail(() => new NotFound('Карточка с указанным id не найдена'))
     .then((card) => {
       if (card.owner.equals(ownerId)) {
-        Card.deleteOne(card)
+        return Card.deleteOne(card)
           .then(() => res.send({ message: `Карточка ${card.name} удалена` }));
-      } else {
-        next(new Forbidden('Невозможно удалить карточку, созданную другим пользователем'));
       }
+      throw new Forbidden('Невозможно удалить карточку, созданную другим пользователем');
     })
     .catch((err) => {
-      if (err instanceof CastError) {
+      if (err.name === 'CastError') {
         next(new BadRequest('Переданы некорректные данные для удаления карточки'));
       } else {
         next(err);
@@ -67,7 +66,7 @@ const updateCard = (cardId, updateBody) => Card.findByIdAndUpdate(cardId, update
   new: true,
   runValidators: true,
 })
-  .orFail(new Error('Not found'));
+  .orFail(new NotFound('Объект с таким id не найден'));
 
 const likeCard = (req, res, next) => {
   const userID = req.user._id;

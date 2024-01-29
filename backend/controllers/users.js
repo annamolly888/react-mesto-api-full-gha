@@ -71,7 +71,7 @@ const updateUser = (userId, updateBody) => User.findByIdAndUpdate(userId, update
   new: true,
   runValidators: true,
 })
-  .orFail(new Error('Not found'));
+  .orFail(new NotFound('Объект с таким id не найден'));
 
 const updateProfile = (req, res) => {
   const { name, about } = req.body;
@@ -101,12 +101,9 @@ const login = (req, res, next) => {
 
 const getLoggedUser = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user._id).orFail(() => { throw new Error('Not found'); });
+    const user = await User.findById(req.user._id).orFail(() => { throw new NotFound('Объект с таким id не найден'); });
     res.send({ data: user });
   } catch (err) {
-    if (err instanceof CastError) {
-      err.message = 'Передан некорректный id пользователя';
-    }
     sendError(err, res, next);
   }
 };
